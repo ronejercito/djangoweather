@@ -3,6 +3,12 @@
 {% block content %}
 
 <h1>Hello World</h1>
+<br>
+
+{{ api.0 }}<br><br>
+Air Quality: {{ api.0.AQI }}<br>
+Area: {{ api.0.ReportingArea }}, {{ api.0.StateCode }}<br>
+Category: {{ api.0.Category.Name }}<br><br>
 
 {% endblock %}
 
