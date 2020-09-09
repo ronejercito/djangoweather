@@ -2,13 +2,34 @@
 
 {% block content %}
 
-<h1>Hello World</h1>
-<br>
+{% if zipcode %}
+<div class="jumbotron content">
+    <p></p>
+    <h3></h3>
+    <h1 class="display-4">NO DATA TO DISPLAY FOR {{ zipcode }}</h1>
+    <h2></h2>
+</div>
+{% endif %}
 
-{{ api.0 }}<br><br>
-Air Quality: {{ api.0.AQI }}<br>
-Area: {{ api.0.ReportingArea }}, {{ api.0.StateCode }}<br>
-Category: {{ api.0.Category.Name }}<br><br>
+{% if api %}
+    {% if api == "Error..." %}
+        Please try again.
+    
+    {% else %}
+    <p>Date: {{ api.0.DateObserved }}</p>
+    <h3>{{ api.0.ReportingArea }}, {{ api.0.StateCode }}</h3><br>
+    <div class="jumbotron {{ cat_col1 }}">
+        <h1 class="display-4">Air Quality(O<sub>3</sub>): {{ api.0.AQI }}</h1>
+        <h3>{{ api.0.Category.Name }}</h3>
+    </div>
+    <div class="jumbotron {{ cat_col2 }}">
+        <h1 class="display-4">Air Quality(PM2.5): {{ api.1.AQI }}</h1>
+        <h3>{{ api.1.Category.Name }}</h3>
+    </div>
+
+    {% endif %}
+
+{% endif %}
 
 {% endblock %}
 
